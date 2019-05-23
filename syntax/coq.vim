@@ -358,4 +358,25 @@ if version >= 508 || !exists("did_coq_syntax_inits")
  delcommand HiLink
 endif
 
+if has('conceal') && get(g:, 'coq_conceal', 'off') =~# 'on'
+    syn keyword coqKwd forall conceal cchar=∀
+    syn keyword coqProofEnder contained Qed conceal cchar=□
+    syn match coqKwd contained "\\\/" conceal cchar=∨
+    syn match coqKwd contained "\/\\" conceal cchar=∧
+    syn match coqTactic contained "\\\/" conceal cchar=∨
+    syn match coqTactic contained "\/\\" conceal cchar=∧
+    syn match coqKwd "->" conceal cchar=⟶
+
+    syntax match coqTactic '\v<[[:alpha:]_]+0>'ms=e conceal cchar=₀
+    syntax match coqTactic '\v<[[:alpha:]_]+1>'ms=e conceal cchar=₁
+    syntax match coqTactic '\v<[[:alpha:]_]+2>'ms=e conceal cchar=₂
+    syntax match coqTactic '\v<[[:alpha:]_]+3>'ms=e conceal cchar=₃
+    syntax match coqTactic '\v<[[:alpha:]_]+4>'ms=e conceal cchar=₄
+    syntax match coqTactic '\v<[[:alpha:]_]+5>'ms=e conceal cchar=₅
+    syntax match coqTactic '\v<[[:alpha:]_]+6>'ms=e conceal cchar=₆
+    syntax match coqTactic '\v<[[:alpha:]_]+7>'ms=e conceal cchar=₇
+    syntax match coqTactic '\v<[[:alpha:]_]+8>'ms=e conceal cchar=₈
+    syntax match coqTactic '\v<[[:alpha:]_]+9>'ms=e conceal cchar=₉
+endif
+
 let b:current_syntax = "coq"
